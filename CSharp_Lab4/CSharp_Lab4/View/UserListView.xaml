@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="CSharp_Lab4.View.UserListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CSharp_Lab4.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="19*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Content="Add" HorizontalAlignment="Left" Margin="4,24,0,0" VerticalAlignment="Top" Width="95" Height="25"  Command="{Binding AddCommand}"/>
+        <Button Grid.Column="0" Content="Edit" HorizontalAlignment="Left" Margin="4,54,0,0" VerticalAlignment="Top" Width="95" Height="25"  Command="{Binding EditCommand}"/>
+        <Button Grid.Column="0" Content="Remove" HorizontalAlignment="Left" Margin="4,84,0,0" VerticalAlignment="Top" Width="95" Height="25"  Command="{Binding RemoveCommand}"/>
+
+        <CheckBox Content="Is Adult" HorizontalAlignment="Left" Margin="10,153,0,0" VerticalAlignment="Top" IsChecked="{Binding IsAdultFilter, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+        <CheckBox Content="Has Birthday" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" IsChecked="{Binding IsBirthdayTodayFilter, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button Grid.Column="0" Content="Filter" HorizontalAlignment="Left" Margin="3,350,0,0" VerticalAlignment="Top" Width="95" Height="25"  Command="{Binding FilterCommand}"/>
+
+        <Label Content="Filters" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" FontSize="30"/>
+        <Label Content="Sort by" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" FontSize="30"/>
+
+        <DataGrid  SelectedItem="{Binding Selected, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"  Grid.Column="2" ItemsSource="{Binding Users, Mode=OneWay}" AutoGenerateColumns="False" CanUserSortColumns="False" ScrollViewer.CanContentScroll="True"  AlternatingRowBackground="Coral">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname, Mode=TwoWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="E-mail" Binding="{Binding Email, Mode=TwoWay}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Is adult?" Binding="{Binding IsAdult}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="West Horoscope Sign" Binding="{Binding SunSign}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Chinese Horoscope Sign" Binding="{Binding ChineseSign}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Is Birthday?" Binding="{Binding IsBirthday}" IsReadOnly="True"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox  HorizontalAlignment="Left" Margin="4,214,0,0" VerticalAlignment="Top" Width="95" Text="{Binding SunSignFilter}">
+            <TextBlock>None</TextBlock>
+            <TextBlock>Aries</TextBlock>
+            <TextBlock>Taurus</TextBlock>
+            <TextBlock>Gemini</TextBlock>
+            <TextBlock>Cancer</TextBlock>
+            <TextBlock>Leo</TextBlock>
+            <TextBlock>Virgo</TextBlock>
+            <TextBlock>Libra</TextBlock>
+            <TextBlock>Scorpio</TextBlock>
+            <TextBlock>Sagittarius</TextBlock>
+            <TextBlock>Capricorn</TextBlock>
+            <TextBlock>Aquarius</TextBlock>
+            <TextBlock>Pisces</TextBlock>
+        </ComboBox>
+        <ComboBox  HorizontalAlignment="Left" Margin="4,265,0,0" VerticalAlignment="Top" Width="95" Text="{Binding ChineseSignFilter}">
+            <TextBlock>None</TextBlock>
+            <TextBlock>Rat</TextBlock>
+            <TextBlock>Ox</TextBlock>
+            <TextBlock>Tiger</TextBlock>
+            <TextBlock >Rabbit</TextBlock>
+            <TextBlock>LDragoneo</TextBlock>
+            <TextBlock>Snake</TextBlock>
+            <TextBlock>Horse</TextBlock>
+            <TextBlock>Goat</TextBlock>
+            <TextBlock>Monkey</TextBlock>
+            <TextBlock>Rooster</TextBlock>
+            <TextBlock>Dog</TextBlock>
+            <TextBlock>Pig</TextBlock>
+        </ComboBox>
+        <Label Content="Sun Signs" HorizontalAlignment="Left" Margin="4,188,0,0" VerticalAlignment="Top"/>
+        <Label Content="Chinese Signs" HorizontalAlignment="Left" Margin="4,242,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="3,310,0,0" VerticalAlignment="Top"  SelectedDate="{Binding DateTimeFilter, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Width="96"/>
+        <Label Content="Date" HorizontalAlignment="Left" Margin="4,287,0,0" VerticalAlignment="Top"/>
+        <ComboBox  HorizontalAlignment="Left" Margin="4,430,0,0" VerticalAlignment="Top" Width="95" Text="{Binding SortBy }">
+            <TextBlock>None</TextBlock>
+            <TextBlock>Name</TextBlock>
+            <TextBlock>Surname</TextBlock>
+            <TextBlock>Email</TextBlock>
+            <TextBlock>Birthday</TextBlock>
+            <TextBlock >Is Adult</TextBlock>
+            <TextBlock>Is Birthday</TextBlock>
+        </ComboBox>
+
+        <Button Grid.Column="0" Content="Sort" HorizontalAlignment="Left" Margin="4,465,0,0" VerticalAlignment="Top" Width="95" Height="25"  Command="{Binding SortCommand}"/>
+
+
+    </Grid>
+</UserControl>
